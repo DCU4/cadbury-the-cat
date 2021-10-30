@@ -1,0 +1,17 @@
+
+<%- include('partials/header', {title: data.fields.title }) %>
+
+
+<main data-barba="container" data-barba-namespace="page">
+
+<h2><%= data.fields.title %></h2>
+<div class="content">
+  <%- 
+  include('partials/wysiwyg', {data})
+  %>
+</div>
+
+</main>
+
+
+<%- include('partials/footer') %>

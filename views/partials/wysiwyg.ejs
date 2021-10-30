@@ -1,0 +1,80 @@
+<% 
+  data.fields.content.content.forEach(d => {
+    
+    let links = d.content.filter(item => item.nodeType == 'hyperlink');
+    let text = d.content.filter(item => item.nodeType == 'text');
+   
+    if (links.length > 0) { %>
+    // TODO set target
+      <p><a href="<%= links[0].data.uri %>"><%= links[0].data.uri %></a></p>
+      <%
+    }
+
+    if (text.length > 0 && d.nodeType == 'paragraph') {
+      if(text[0].marks.length > 0) { 
+        if (text[0].marks[0].type == 'code') { %>
+          <p><pre><code><%= text[0].value %></code></pre></p>
+        <% } else if(text[0].marks[0].type == 'bold') { %>
+          <p><strong><%= text[0].value %></strong></p>
+        <% } else if(text[0].marks[0].type == 'italic') { %>
+          <p><i><%= text[0].value %></i></p>
+        <% } else if (text[0].marks[0].type == 'underline') { %>
+          <p class="<%= text[0].marks[0].type %>"><%= text[0].value %></p>
+        <% } else { %>
+          <p class="<%= text[0].marks[0].type %>"><%= text[0].value %></p>  
+        <% 
+        }
+      }
+    }
+
+    if (d.nodeType == 'embedded-asset-block') { %>
+        <img src="<%= d.data.target.fields.file.url %>" alt="<%= d.data.target.fields.title %>" />
+      <%
+    }
+
+    if (d.nodeType == 'heading-1') { %>
+      <h1><%= d.content[0].value %></h1>
+      <%
+    }
+    if (d.nodeType == 'heading-2') { %>
+      <h2><%= d.content[0].value %></h2>
+      <%
+    }
+    if (d.nodeType == 'heading-3') { %>
+      <h3><%= d.content[0].value %></h3>
+      <%
+    }
+    if (d.nodeType == 'heading-4') { %>
+      <h4><%= d.content[0].value %></h4>
+      <%
+    }
+    if (d.nodeType == 'heading-5') { %>
+      <h5><%= d.content[0].value %></h5>
+      <%
+    }
+    if (d.nodeType == 'heading-6') { %>
+      <h6><%= d.content[0].value %></h6>
+      <%
+    }
+
+    if (d.nodeType == 'unordered-list') { %>
+      <ul>
+        <% d.content.forEach(item => { %>
+          <li><%= item.content[0].content[0].value %></li>
+        <% }); %>
+      </ul>
+       <%
+    }
+
+    if (d.nodeType == 'ordered-list') { %>
+      <ol>
+        <% d.content.forEach(item => { %>
+          <li><%= item.content[0].content[0].value %></li>
+        <% }); %>
+      </ol>
+       <%
+    }
+
+    // TODO set up blockquote, hr, alignment, table
+  });
+%>

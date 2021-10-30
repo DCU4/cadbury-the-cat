@@ -1,0 +1,15 @@
+
+<%- include('partials/header', {title: 'About'}) %>
+
+
+<main data-barba="container" data-barba-namespace="about">
+
+  <h2><%= data.fields.title %></h2>
+  <div class="content">
+    <p><%= data.fields.content.content[0].content[0].value %></p>
+  </div>
+
+</main>
+
+
+<%- include('partials/footer') %>

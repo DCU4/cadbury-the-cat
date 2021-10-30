@@ -1,0 +1,15 @@
+
+<%- include('partials/header') %>
+
+
+<main data-barba="container" data-barba-namespace="home">
+
+  <h2>Cadbury</h2>
+  <% data.forEach((cat, i) => { %>
+    <img src="<%- cat.fields.images[0].fields.file.url %>" alt="<%- cat.fields.images[0].fields.title %>" />
+  <% }); %>
+
+</main>
+
+
+<%- include('partials/footer') %>
