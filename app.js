@@ -39,7 +39,8 @@ app.get('/', (req, res) => {
   if (res.statusCode === 200){
     getCustomEntries('cadbury')
     .then(data => {
-      res.render('index', {data: data});
+      let images = data[0].fields.images;
+      res.render('index', {data: images});
     })
     .catch(err => console.log(err));
     
