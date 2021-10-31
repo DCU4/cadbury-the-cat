@@ -50,50 +50,6 @@ app.get('/', (req, res) => {
 });
 
 
-// work routes
-// getWork()
-// .then(data => {
-//   data.forEach(d => {
-//     let pathName = d.fields.company.toLowerCase();
-//     let slug = pathName.split(" ").join("-");
-//     app.get(`/work/${slug}`, (req, res) => {
-//       if (res.statusCode === 200){
-//         res.render('work', {data: d});
-//       } else {
-//         res.sendStatus(404)
-//       }
-//     });
-//   });
-// })
-// .catch(err => console.log(err));
-
-
-
-// page routes
-// getCustomEntries('page')
-// .then(data => {
-//   data.forEach(d => {
-//     let pathName = d.fields.title.toLowerCase();
-//     let slug = pathName.split(" ").join("-");
-//     // TODO get custom slug fields
-
-//     app.get(`/${slug}`, (req, res) => {
-//       if (res.statusCode === 200){
-//         if (fs.existsSync(`./views/${pathName}.ejs`)) {
-//           res.render(pathName, {data: d});
-//         } else {
-//           res.render('page', {data: d});
-//         }
-//       } else {
-//         res.sendStatus(404)
-//       }
-//     });
-//   });
-// })
-// .catch(err => console.log(err));
-
-
-
 app.listen(process.env.PORT || 8081, () => {
   console.log('connected to serverrrr');
 });
