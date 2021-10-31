@@ -4,11 +4,13 @@
 
 <main data-barba="container" data-barba-namespace="home">
 
-  <h2>Cadbury</h2>
-  <% data.forEach((cat, i) => { %>
-    <img src="<%- cat.fields.images[0].fields.file.url %>" alt="<%- cat.fields.images[0].fields.title %>" />
-  <% }); %>
-
+  <section class="grid">
+    <% data.forEach((cat, i) => { %>
+      <div class="img-wrapper">
+        <img src="<%- cat.fields.file.url %>?fit=fill&w=900&fm=webp" alt="<%- cat.fields.title %>" />
+      </div>
+    <% }); %>
+  </section>
 </main>
 
 
