@@ -1,91 +1,41 @@
+// lazy load 
+window.onload = () => {
+  const lazyLoads = document.querySelectorAll('.lazy-load > source');
+  lazyLoadImages(lazyLoads);
+}
 
-// let innerWidth = window.innerWidth;
-
-// barba.init({
-//   transitions: [{
-//     name: 'opacity-transition',
-//     leave(data) {
-//       let square = document.querySelector('.square');
-//       return (
-//         gsap.to(square, {
-//           opacity: 0,
-//           y: 100
-//         }),
-//         gsap.to(data.current.container, {
-//           opacity: 0,
-//           y: 100
-//         })
-        
-//       );
-//     },
-//     enter(data) {
-//       let square = document.querySelector('.square');
-//       return (
-//         gsap.to(square, {
-//           opacity: 1,
-//           y: 0
-//         }),
-//         gsap.from(data.next.container, {
-//           opacity: 0,
-//           y: -100
-//         })        
-//       );
-//     }
-//   }
-//   ]
-// });
-
-
-// let square = document.querySelector('.square');
-// square.addEventListener('mouseover', (e) => {
-//   gsap.to(square, {
-//     scale: 2,
-//     x: 0,
-//     transformOrigin:"bottom right"
-//   });
-// });
-
-// square.addEventListener('mouseout', (e) => {
-//   gsap.to(square, {
-//     scale: 1,
-//     x: 0,
-//     transformOrigin:"bottom right"
-//   });
-// });
-
-// var isRunning = false;
-
-// square.addEventListener('click', () => {
-//   var tl = new TimelineMax()
-
-//   tl.to(square, {
-//     scale: 100
-//   })
-//   .to(square, {
-//     opacity:0
-//   })
-//   .to(square, {
-//     scale: 1,
-//     opacity:0
-//   })
-//   .to(square, {
-//     scale:1,
-//     opacity:1
-//   });
-// // console.log(tl.isActive())
-//   setTimeout(() => {
-//     square.classList.toggle('dark-mode');
-//   },2000)
-//   document.body.classList.toggle('dark-mode');
-// });
-
-// let mouseCursor = document.querySelector('.cursor');
-// window.addEventListener('mousemove', (e) => {
-//   mouseCursor.style.transform = `translate(${e.pageX}px, ${(e.pageY-200)}px)`;
-//   // mouseCursor.style.top = e.pageY + 'px';
-//   // mouseCursor.style.left = e.pageX + 'px';
-//   // console.log(e.target)
-//   if (e.target.nodeName.toLowerCase() == 'a') {
-//     mouseCursor.style.transform = `translate(${e.pageX}px, ${(e.pageY-200)}px) scale(4)`;
-//   }
-// });
+function lazyLoadImages(images) {
+  const options = {
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+  
+  const handleIntersection = (entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.intersectionRatio > 0.1 && entry.target.dataset.src != '') {
+        let lazyImage = entry.target;
+        lazyImage.srcset = lazyImage.dataset.srcset;
+        lazyImage.nextElementSibling.src = lazyImage.dataset.srcset;
+        lazyImage.parentElement.classList.add('fade-in');
+        observer.unobserve(lazyImage);
+      }
+    })
+  }
+  
+  const observer = new IntersectionObserver(handleIntersection, options);
+  
+  if ("IntersectionObserver" in window) {
+    images.forEach((img) => {
+      console.log(img)
+      observer.observe(img);
+    });
+  }
+  
+  document.addEventListener("scroll", function() {
+    if ("IntersectionObserver" in window) {
+      images.forEach((img) => {
+        observer.observe(img);
+      });
+    }
+  });
+}
