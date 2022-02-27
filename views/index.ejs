@@ -7,9 +7,13 @@
   <section class="grid">
     <% data.forEach((cat, i) => { %>
       <div class="img-wrapper">
-        <picture>
-          <source srcset="<%- cat.fields.file.url %>?fit=fill&w=900&fm=webp" type="image/webp">
-          <img src="<%- cat.fields.file.url %>?fit=fill&w=900&fm=jpg" alt="<%- cat.fields.title %>">
+        <picture class="lazy-load">
+          <source data-srcset="<%- cat.fields.file.url %>?fit=fill&w=900&fm=webp" type="image/webp">
+          <img 
+            data-src="<%- cat.fields.file.url %>?fit=fill&w=900&fm=jpg"
+            src="<%- cat.fields.file.url %>?fit=fill&w=90&fm=jpg" 
+            alt="<%- cat.fields.title %>" 
+          >
         </picture>
       </div>
     <% }); %>
