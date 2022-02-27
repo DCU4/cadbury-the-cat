@@ -24,10 +24,12 @@ body {
 
 img {
   max-width: 100%;
+  min-height: 100px;
+  width: 100%;
   height: auto;
   display: block;
   transform: scale(1);
-  transition: transform 1s ease;
+  transition: all 1s ease;
 }
 
 img:hover {
@@ -37,9 +39,16 @@ img:hover {
 .grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* gap: 2em; */
 }
 
 .img-wrapper {
   overflow: hidden;
+}
+
+.lazy-load img {
+  filter: blur(10px);
+}
+
+.fade-in img {
+  filter: blur(0);
 }
