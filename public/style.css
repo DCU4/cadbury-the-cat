@@ -20,12 +20,19 @@ body {
   transition: all 0.5s ease-out;
 }
 
+h1 {
+  text-align: center;
+  padding-top: 2em;
+}
+
 img {
   max-width: 100%;
   min-height: 100px;
   width: 100%;
   height: auto;
   display: block;
+  object-fit: cover;
+  height: 600px;
   transform: scale(1);
   transition: all 1.5s ease;
 }
@@ -34,9 +41,21 @@ img {
   transform: scale(1.25);
 }
 
-.grid{
+.grid {
+  padding: 2em 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(2, 1fr);
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.img-wrapper.wide {
+  grid-column: span 2 ;
+}
+.img-wrapper.tall {
+  grid-row: span 2 ;
 }
 
 .img-wrapper {
