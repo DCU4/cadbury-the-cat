@@ -3,10 +3,13 @@
 
 
 <main data-barba="container" data-barba-namespace="home">
-
+  <h1>Cadbury</h1>
   <section class="grid">
-    <% data.forEach((cat, i) => { %>
-      <div class="img-wrapper">
+    <% data.forEach((cat, i) => {
+      const width = cat.fields.file.details.image.width;
+      const height = cat.fields.file.details.image.height;
+      %>
+      <div class="img-wrapper <%- height > width ? 'tall' : 'wide'%>">
         <picture class="lazy-load">
           <source data-srcset="<%- cat.fields.file.url %>?fit=fill&w=900&fm=webp" type="image/webp">
           <img 
