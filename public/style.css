@@ -34,7 +34,7 @@ img {
   object-fit: cover;
   height: 600px;
   transform: scale(1);
-  transition: all 1.5s ease;
+  transition: all .5s ease;
 }
 
 .fade-in img:hover {
@@ -63,7 +63,7 @@ img {
 }
 
 .lazy-load img {
-  filter: blur(100px);
+  filter: blur(50px);
 }
 
 .fade-in img {
