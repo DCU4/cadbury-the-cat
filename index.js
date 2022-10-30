@@ -15,7 +15,7 @@ const client = contentful.createClient({
 });
 
 
-// app.use(express.static(__dirname + '/views')); // html
+app.use(express.static(__dirname + '/views')); // html
 app.use(express.static(__dirname + '/public')); // js, css, images
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
